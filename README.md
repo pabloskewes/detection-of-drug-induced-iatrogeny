@@ -2,8 +2,4 @@
 Project to detect medical prescriptions with errors using machine learning.
 
 Project realized by:
-ACEVEDO Nicolas
-ALDANA Pablo
-LENGLET Marie
-PURIM Andreis
-SKEWES Pablo
+Nicolas Acevedo, Pablo Aldana, Marie Lenglet, Andreis Purim and Pablo Skewes at Ecole Centrale de Lille.
