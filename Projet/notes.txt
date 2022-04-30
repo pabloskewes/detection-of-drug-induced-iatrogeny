@@ -1,0 +1,13 @@
+on a éxécuté ce code et ça a marché :)
+all((len(grupo_dci[key]['CODE_ATC'].unique()) == 1 for key in grupo_dci)) == True
+
+alors, pour chaque DCI libellé il exist un unique code ATC
+groupe_dci = divide_by_code(df, 'DCI'), avec df toutes les données
+
+-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-
+
+il y a beaucoup des données où la quantité prescrite est égal 0
+| -> df[df['QTE_PRESC'] == '0']['CODE_ATC'].value_counts()
+	il semblairait qu'ils s'agissent principalement de l'insuline
+
+il faut réviser qu'est-ce qu'on va faire avec ces données

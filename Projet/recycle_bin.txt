@@ -1,0 +1,67 @@
+Cementerio de código xd
+
+
+import multiprocessing	
+
+
+
+# ---------------------------------- PARALLEL PROCESSING ------------------------------------------------
+# activate_pool: list(df) -> pool
+# creates a multiprocessing pool the same size as dflist
+def activate_pool(dflist):
+    NUM_CORES = len(dflist)
+    pool = multiprocessing.Pool(NUM_CORES)
+    return pool
+
+
+# parallel_process_df: list(df) , function(df -> A) , pool , int -> list(A)
+# applies a funcion to every dataframe in a list with parallel processing
+# by default, the number of cores is equal to the lenght of dflist
+def parallel_process_df(dflist,function, pool, num_cores_default = 0):
+    if num_cores_default == 0:
+        NUM_CORES = len(dflist)
+    else:
+        NUM_CORES = num_cores_default
+    df_chunks = np.array(dflist,dtype=object)
+    output = pool.map(function,df_chunks)
+    return output
+	
+	
+	
+
+def group_frequences_marie(df: DataFrame) -> None:
+    n = len(df)
+    med_actual = 0
+    df.sort_values(['P_ORD_C_NUM'],inplace=True)
+    while med_actual < n-1 :
+        print(med_actual)
+        for j in range(med_actual+1, n):
+            df_j = df.loc[j,['P_ORD_C_NUM','CODE_ATC','VOIE_ADMIN','QTE_PRESC','UNITE_PRESC']]
+            df_med_actual = df.loc[med_actual,['P_ORD_C_NUM','CODE_ATC','VOIE_ADMIN','QTE_PRESC','UNITE_PRESC']]
+            if not (df_j.equals(df_med_actual)):
+                qte = j - med_actual
+                if qte != 1:
+                    df.at[med_actual, 'FREQUENCE'] = 24*60 / qte
+                    df.at[med_actual, 'MOMENT'] = 'AUCUN'
+                    df.drop(range(med_actual+1, j), axis = 0, inplace= True)
+                    med_actual = j
+                    break
+    df.reset_index(drop=True, inplace = True)
+    return 
+
+
+# fix_unit_weight : df -> None
+# Put all the weight values in kg
+def fix_unit_weight(df: DataFrame) -> None:
+    for i in df.index:
+        if df.at[i,"POIDS_UNITE"]=="g":
+            df.loc[i,"POIDS"] /= 1000
+            df.loc[i,"POIDS_UNITE"]="kg"
+
+# fix_unit_height : df -> None
+# Put all the height values in meters
+def fix_unit_height(df: DataFrame) -> None:
+    for i in df.index:
+        if df.at[i,"TAILLE_UNIT"]=="cm":
+            df.loc[i,"TAILLE"] /= 100
+            df.loc[i,"TAILLE_UNIT"]="m"
