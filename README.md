@@ -2,7 +2,7 @@
 ##### Machine Learning Detector for Drug Iatrogeny for the CHU Lille
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-no-red.svg)](https://github.com/AndreisPurim/DrugIatrogenyDetector)
 
-Created by: **Nicolas Acevedo**, **Pablo Aldana**, **Marie Lenglet**, **Andreis Purim** and **Pablo Skewes**
+Created by: [**Nicolas Acevedo**](https://github.com/nicoacevedor), [**Pablo Aldana**](https://github.com/Paldana99), [**Marie Lenglet**](https://github.com/mlenglet), [**Andreis Purim**](https://github.com/AndreisPurim) and [**Pablo Skewes**](https://github.com/pabloskewes)
 
 This is an older project for the M1 Elective "Inteligence Artificel et Santé" at the École Centrale de Lille. The objective was to implement something inovative at the Centre Hospitalier Universitaire de Lille (CHU Lille) combining health and IA. We decided to create a program that every time a doctor added a new prescription, it would check and detect if it is correct and/or can cause further problems for the patient.
 
